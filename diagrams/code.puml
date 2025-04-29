@@ -1,0 +1,54 @@
+@startuml
+title SmartHome Sensors Management Code Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+class Sensor {
+  	+int id
+  	+string Name
+  	+SensorType Type
+  	+string Location
+  	+float Value
+  	+string Unit
+  	+string Status
+  	+string LastUpdated
+  	+string CreatedAt
+}
+class SensorType {
+  	+string Name
+}
+
+class SensorController {
+    +getSensors()
+    +getSensor()
+    +registerSensor()
+    +configureSensor()
+    +deleteSensor()
+}
+
+class SensorService {
+    +findSensors()
+    +findSensorByID()
+    +registerSensor()
+    +configureSensor()
+    +deleteSensor()
+}
+
+class RepositoryLayer {
+    +find()
+    +findByID()
+    +create()
+    +update()
+    +delete()
+}
+
+
+SensorController --> SensorService
+SensorService --> RepositoryLayer
+Sensor "0..*" -- "1" SensorType : has
+RepositoryLayer ..> Sensor
+
+
+@enduml

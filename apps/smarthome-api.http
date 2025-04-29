@@ -1,0 +1,64 @@
+# Smart Home Sensor API
+
+###
+# @name Health Check
+# Check if the API is running
+GET http://localhost:8080/health
+
+###
+# @name Get All Sensors
+# Retrieve all sensors
+GET http://localhost:8080/api/v1/sensors
+
+###
+# @name Get Sensor by ID
+# Retrieve a specific sensor by ID
+GET http://localhost:8080/api/v1/sensors/1
+
+###
+# @name Create Sensor
+# Create a new sensor
+POST http://localhost:8080/api/v1/sensors
+Content-Type: application/json
+
+{
+  "name": "Living Room Temperature",
+  "type": "temperature",
+  "location": "Living Room",
+  "unit": "°C"
+}
+
+###
+# @name Update Sensor
+# Update an existing sensor
+PUT http://localhost:8080/api/v1/sensors/1
+Content-Type: application/json
+
+{
+  "name": "Updated Living Room Temperature",
+  "type": "temperature",
+  "location": "Living Room",
+  "unit": "°C"
+}
+
+###
+# @name Delete Sensor
+# Delete a sensor
+DELETE http://localhost:8080/api/v1/sensors/1
+
+###
+# @name Update Sensor Value
+# Update a sensor's value and status
+PATCH http://localhost:8080/api/v1/sensors/1/value
+Content-Type: application/json
+
+{
+  "value": 22.5,
+  "status": "active"
+}
+
+
+###
+# @name Health Check
+# Check if the API is running
+GET http://localhost:8081/temperature?location=Bedroom

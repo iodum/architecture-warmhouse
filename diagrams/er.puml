@@ -1,0 +1,55 @@
+@startuml
+title SmartHome Sensors Management Code Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+entity User {
+    **user_id: number <<PK>>**
+    --
+    login: string
+    email: string
+    name: string
+    password: string
+    create_at: timestamp
+}
+entity House {
+    **house_id: number <<PK>>**
+    --
+    +user_id: number <<FK>>
+    address: string
+}
+
+entity Sensor {
+    **sensor_id: number <<PK>>**
+    --
+    +house_id: number <<FK>>
+    +type_id: number <<FK>>
+  	name: string
+  	location: string
+  	status: enum
+  	serial_number: string
+  	create_at: timestamp
+  	update_at: timestamp
+}
+entity SensorType {
+    **type_id: number <<PK>>**
+    --
+  	name: string
+}
+
+entity TelemetryData {
+    **telemetry_id: number <<PK>>**
+    --
+    +sensor_id: number <<FK>>
+    create_at: timestamp
+    value: string
+}
+
+User ||--o{ House
+House ||--o{ Sensor
+Sensor ||--o{ TelemetryData
+SensorType ||--o{ Sensor
+
+@enduml
