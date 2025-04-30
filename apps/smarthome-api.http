@@ -59,6 +59,6 @@ Content-Type: application/json
 
 
 ###
-# @name Health Check
+# @name Temperature Check
 # Check if the API is running
 GET http://localhost:8081/temperature?location=Bedroom
